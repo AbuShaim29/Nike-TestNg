@@ -5,12 +5,7 @@
     <classes>
       <class name="page.HomePageTest">
         <methods>
-          <include name="tearup"/>
-          <include name="nextbuttonTest"/>
-          <include name="searchButtonTest"/>
-          <include name="logoTest"/>
-          <include name="newFeaturedTest"/>
-          <include name="userIdfieldTest"/>
+          <include name="userIdFeildClickTest"/>
           <include name="setup"/>
         </methods>
       </class> <!-- page.HomePageTest -->
