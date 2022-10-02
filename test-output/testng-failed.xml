@@ -5,7 +5,26 @@
     <classes>
       <class name="page.HomePageTest">
         <methods>
+          <include name="nextbuttonTest"/>
+          <include name="newfeaturedTest1"/>
+          <include name="allCategories"/>
+          <include name="signIn"/>
+          <include name="cartTest"/>
           <include name="userIdFeildClickTest"/>
+          <include name="getHelpTest"/>
+          <include name="menButtonTest"/>
+          <include name="tearup"/>
+          <include name="logotest1"/>
+          <include name="logoTest3"/>
+          <include name="searchButtonTest"/>
+          <include name="searchButtonTest1"/>
+          <include name="userNameTest"/>
+          <include name="logoTest"/>
+          <include name="newFeaturedTest"/>
+          <include name="searchInput"/>
+          <include name="userIdfieldTest"/>
+          <include name="privacyRightTest"/>
+          <include name="shopTest"/>
           <include name="setup"/>
         </methods>
       </class> <!-- page.HomePageTest -->
