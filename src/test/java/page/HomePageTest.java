@@ -1,13 +1,23 @@
 package page;
 
-import java.awt.RenderingHints.Key;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertFalse;
+
+import java.awt.Desktop.Action;
+
+import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver.Window;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
 import BaseUtil3.BaseClass;
 
@@ -202,7 +212,7 @@ public class HomePageTest extends BaseClass {
 		Thread.sleep(5000);
 	}
 
-	@Test(enabled = true)
+	@Test(enabled = false)
 	public void setASpecificSizeOfWindow() throws InterruptedException {
 		Dimension dimension = new Dimension(900, 500);
 		driver.manage().window().setSize(dimension);
@@ -214,5 +224,102 @@ public class HomePageTest extends BaseClass {
 		Thread.sleep(5000);
 		System.out.println("This size of the screen is " + driver.manage().window().getSize());
 	}
+
+	// new
+	@Test(enabled = false)
+	public void dropdown_selectByIndex_Method() throws InterruptedException {
+		driver.navigate().to("https://www.aliexpress.us/");
+		driver.findElement(By.className("btn-close")).click();
+		WebElement dropElement = driver.findElement(By.id("search-dropdown-box"));
+		Select select = new Select(dropElement);
+		select.selectByIndex(3);
+		Thread.sleep(5000);
+
+	}
+
+	@Test(enabled = false)
+	public void dropdown_selectByVisisbleText_Method() throws InterruptedException {
+		driver.navigate().to("https://www.aliexpress.us/");
+		driver.findElement(By.className("btn-close")).click();
+		// driver.findElement(By.name("_sacat"));
+		WebElement dropElement = driver.findElement(By.id("search-dropdown-box"));
+		Select select2 = new Select(dropElement);
+		select2.selectByVisibleText("Shoes");
+		Thread.sleep(5000);
+
+	}
+
+	@Test(enabled = false)
+	public void dropdown_selectByValue_Method() throws InterruptedException {
+		// driver.get("http://www.ebay.com/");
+		driver.navigate().to("https://www.aliexpress.us/");
+		driver.findElement(By.className("btn-close")).click();
+		// driver.findElement(By.name("_sacat"));
+		WebElement dropElement = driver.findElement(By.name("search-dropdown-box"));
+		Select select3 = new Select(dropElement);
+		select3.selectByValue("58058");
+		Thread.sleep(5000);
+	}
+
+	@SuppressWarnings("deprecation")
+	@Test(enabled = false)
+	public void setScriptTimeoutForWindow() {
+		driver.manage().timeouts().setScriptTimeout(20, TimeUnit.SECONDS);
+		driver.get("http://www.ebay.com/");
+	}
+
+	@Test(enabled = false)
+	public void mouseHobarActionOnAboutUs() throws InterruptedException {
+		Actions action = new Actions(driver);
+		driver.get("https://www.mountsinai.org/");
+		WebElement aboutUs = driver
+				.findElement(By.xpath("//a[normalize-space(text())='About Us' and @class='hidden-xs dropdown']"));
+		Thread.sleep(5000);
+		action.moveToElement(aboutUs).build().perform();
+		Thread.sleep(5000);
+	}
+
+	@Test(enabled = true)
+	public void mouseHoberActionOnMens() throws InterruptedException {
+		Actions actions = new Actions(driver);
+		WebElement mens = driver.findElement(By.xpath(
+				"//button[@class='nav-btn p0-sm pre-desktop-menu-link headline-5 prl3-lg pt4-sm d-sm-b no-outline']"));
+		Thread.sleep(3000);
+		actions.moveToElement(mens).build().perform();
+		Thread.sleep(3000);
+		System.out.println("\nThe text of this web element is:" + mens.getText());
+	}
+
+	@Test(enabled = false)
+	public void logoTest4() {
+		WebElement logo = driver.findElement(By.xpath("//img[@alt='Mount Sinai']"));
+		driver.get("https://www.mountsinai.org/");
+		boolean flag = logo.isDisplayed();
+		// System.out.println("is the logo Displayed? Ans:"+flag);
+		Assert.assertTrue(true, "Application logo is not Displayed......");
+
+	}
+
+	@Test(enabled = false)
+	public void use_of_getTitle_method_with_assertion() {
+		// driver.getTitle();
+		String expected = "Men&#x27;s Shoes, Clothing &amp; Accessories. Nike.com";
+		String actual = driver.getTitle();
+		System.out.println("Home Page Title is:" + actual);
+		Assert.assertEquals(actual, expected, "Home Page Title doesn't match......");
+		String currentURL = driver.getCurrentUrl();
+		System.out.println("The current url from  is:" + currentURL);
+	}
+
+	@Test(enabled = false)
+	public void use_of_getTitle_method_with_soft_assertion() {
+		String expected = "Men&#x27;s Shoes, Clothing &amp; Accessories. Nike.com";
+		String actual = driver.getTitle();
+		System.out.println("Home page  Title is:" + actual);
+		SoftAssert softAssert = new SoftAssert();
+		softAssert.assertEquals(actual, expected, "Home Page Title doesn't match....");
+		String currentURL = driver.getCurrentUrl();
+		System.out.println("The current url from is:" + currentURL);
+	}
+
 }
-	
